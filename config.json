@@ -1,7 +1,12 @@
 {
-    "title": "Poland vote share",
-    "docData": "https://interactive.guim.co.uk/docsdata-test/1HlEiTONjuU5nVzCYV_UszSCfHGlbzSSaMNkTsy35mCE.json",
-    "path": "2019/10/vote-share-poland",
+    "title": "Canada vote share",
+    "docData": "https://interactive.guim.co.uk/docsdata-test/1GNE_kTJ4T46Zd80ZkS_1lDrJTRm9U6HDaNT0eEzrmWo.json",
+    "path": "2019/10/vote-share-canada",
     "previousUses": [
+        {
+            "title": "Switzerland vote share",
+            "docData": "https://interactive.guim.co.uk/docsdata-test/1HlEiTONjuU5nVzCYV_UszSCfHGlbzSSaMNkTsy35mCE.json",
+            "path": "2019/10/vote-share-switzerland"
+    }
     ]
 }

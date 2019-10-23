@@ -1,8 +1,20 @@
 import * as d3 from 'd3'
 import config from './../../config.json'
 
-console.log(config)
 const dataurl = config.docData;
+
+
+console.log("vote share running boojum")
+
+function getFurniture(data) {
+    var furniture = data.sheets.furniture;
+    furniture.map(f => {
+        if (document.querySelector(f.element) !== null) {
+            var el = document.querySelector(f.element)
+            el.innerHTML = f.text;
+        }
+    })
+}
 
 
 
@@ -10,15 +22,20 @@ d3.json(dataurl).then(data => {
 
     var containerWidth = Number(d3.select(".interactive-wrapper").style('width').slice(0, -2))
 
+    var chartwidth = containerWidth - 150
+
     var chart = d3.select(".gv-chart-graphic")
+
+    var results = data.sheets.results;
+
+    console.log(results)
 
     var svg = chart.append("svg")
     .attr("width", containerWidth)
-    .attr("height", 400)
+    .attr("height", (45 * results.length))
     .attr("class","gv-waffle")
     .attr("id","gv-waffle")
 
-    var results = data.sheets.results;
 
     var allshares = []
     results.map(p => {
@@ -35,12 +52,13 @@ d3.json(dataurl).then(data => {
     .enter()
     .append('rect')
     .attr("width", d => {
-        return ((d.previous / largestShare) * containerWidth) - 150;
+        return ((d.previous / largestShare) * chartwidth);
     })
     .attr("height", "20px")
-    .attr("fill", "grey")
-    .attr("y", (d,i) => {return (i * 35)  + 10})
+    .attr("fill", d => d.partycolour)
+    .attr("y", (d,i) => {return (i * 45)  + 20})
     .attr("x", 150)
+    .attr("opacity",0.25)
 
 
     var currents = svg.append("g").selectAll("current-bar")
@@ -48,11 +66,11 @@ d3.json(dataurl).then(data => {
     .enter()
     .append('rect')
     .attr("width", d => {
-        return ((d.share / largestShare) * containerWidth) - 150;
+        return ((d.share / largestShare) * chartwidth);
     })
     .attr("height", "20px")
     .attr("fill", d => d.partycolour)
-    .attr("y", (d,i) => {return i * 35})
+    .attr("y", (d,i) => {return i * 45})
     .attr("x", 150)
 
 
@@ -60,15 +78,36 @@ d3.json(dataurl).then(data => {
     .data(results)
     .enter()
     .append("text")
-    .attr("y", (d,i) => {return (i * 35) + 20})
+    .attr("y", (d,i) => {return (i * 45) + 15})
     .text(d => d.party)
+    .attr("class","gv-party-name")
 
     var sharelabels = svg.append("g").selectAll("sharelabel")
     .data(results)
     .enter()
     .append("text")
-    .attr("y", (d,i) => {return (i * 35) + 35})
-    .text(d => `${d.share}% (${d.previous - d.share})`)
+    .attr("y", (d,i) => {return (i * 45) + 35})
+    .text(d => `${d.share}% (${d.share > d.previous ? "+": ""}${(d.share - d.previous).toFixed(1)})`)
+    .attr("class","gv-party-result")
+
+    var currentyear = svg.append("g");
+    currentyear.append("text")
+    .text("2019")
+    .attr("class","gv-current-year")
+    .attr("x", 152)
+    .attr("y", 18)
+
+
+
+    var previousyear = svg.append("g");
+    previousyear.append("text")
+    .text("2015")
+    .attr("class","gv-previous-year")
+    .attr("x", 152)
+    .attr("y", 38)
+
+
+
 
 
 
@@ -92,8 +131,33 @@ d3.json(dataurl).then(data => {
     //     .attr("width", cellsize - 2)
 
 
-    window.resize()
+    getFurniture(data);
 
+
+    const doResize = () => {
+
+        if(window.resize) {
+            window.resize()
+        }
+      
+        window.parent.postMessage({
+            sentinel: 'amp',
+            type: 'embed-size',
+            height: document.body.scrollHeight
+          }, '*')
+      }
+      
+      try {
+        doResize()
+      } catch(err) { console.log("Resize error", err) }
+      
+      document.body.addEventListener('load', () => {
+      
+          try {
+              doResize()
+          } catch(err) { console.log("Resize onLoad error", err) }
+      
+      })
 })
 
 

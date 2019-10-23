@@ -18,15 +18,15 @@
 .interactive-wrapper {
     height: 100%;
     width: 100%;
-    // min-height: 150px;
     min-width: 280px;
+    min-height: 150px;
 
 
-    .gv-chart-title {
+    .gv-vs-chart-title {
         @include fs-headline(3);
         font-weight: 700;
     }
-    .gv-chart-subtitle {
+    .gv-vs-chart-subtitle {
         @include fs-bodyCopy(1);
         margin-bottom: 12px;
     }
@@ -35,109 +35,28 @@
         @include fs-bodyHeading(2)
     }
 
-    .gv-main-party-votes,.gv-main-party-label {
-        display: inline-block;
+    .gv-party-name,.gv-party-result {
+        @include fs-textSans(3);
     }
 
-    .gv-main-party-2 {
-        .gv-main-party-votes {
-            float: left;
-            margin-right: 7px;
-        }
-        .gv-main-party-label {
-            margin-left: 10px;
-        }
+    .gv-party-name {
+        font-weight: 700;
+
     }
 
-    .gv-waffle {
-        margin-top: 8px;
-    }
-
-
-    .gv-halfway-wrapper {
-        margin-top: -12px;
-        margin-bottom: 12px;
-    }
-
-    .gv-halfway-marker {
-        position: relative;
-        left: calc(50% - 0.25em);
-    }
-    .gv-halfway-label {
-        @include fs-textSans(1);
-        position: relative;
-        left: calc(50% - 1em);
-    }
-
-    .gv-majority-message {
-        @include fs-textSans(1);
-        margin-bottom: 6px;
-    }
-
-    .gv-party-key-entry {
-        display: inline-block;
-        @include fs-textSans(2);
-        margin-right: 10px;
-    }
-
-    .gv-blob {
-        display: inline-block;
-        height: 13px;
-        width: 13px;
-        background-color: var(--gv-colour);
-        border-radius: 20%;
-        margin-right: 5px;
-    }
-
-    .gv-main-party-1 {
-        float: left;
-    }
-
-    .gv-main-party-2 {
-        float: right;
-    }
-
-    .gv-source {
+    .gv-vs-source {
         padding-top: 5px;
         @include fs-textSans(2);
         float: right;
     }
 
-}
+    .gv-current-year,.gv-previous-year {
+        @include fs-textSans(1);
+    }
 
-.austria {
-    .gv-main-party-votes{
-        @include fs-headline(4);
+    .gv-current-year {
+        fill: white;
+    }
 
-    }
-    .gv-main-party-1,.gv-main-party-2 {
-        span {
-            display: block;
-        }
-    }
-    .gv-main-party-2 {
-        .gv-main-party-votes {
-            float: right;
-        }
-    }
-    .gv-halfway-wrapper {
-        display: none;
-    }
-}
 
-.portugal,.poland {
-    .gv-main-party-votes{
-        @include fs-headline(4);
-
-    }
-    .gv-main-party-1,.gv-main-party-2 {
-        span {
-            display: block;
-        }
-    }
-    .gv-main-party-2 {
-        .gv-main-party-votes {
-            float: right;
-        }
-    }
 }
