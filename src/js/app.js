@@ -1,5 +1,8 @@
-import * as d3 from 'd3'
+import * as d3fetch from 'd3-fetch'
+import * as d3selection from 'd3-selection'
 import config from './../../config.json'
+
+const d3 = Object.assign({}, d3fetch, d3selection);
 
 const dataurl = config.docData;
 
