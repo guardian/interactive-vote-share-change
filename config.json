@@ -1,8 +1,13 @@
 {
-    "title": "Canada vote share",
-    "docData": "https://interactive.guim.co.uk/docsdata-test/1GNE_kTJ4T46Zd80ZkS_1lDrJTRm9U6HDaNT0eEzrmWo.json",
-    "path": "2019/10/vote-share-canada",
+    "title": "Ireland vote share",
+    "docData": "https://interactive.guim.co.uk/docsdata-test/11ghAs6bqJzTyfuGo5bJ7uNRSBk3KxEZvqizzV78Xleo.json",
+    "path": "2020/02/vote-share-ireland",
     "previousUses": [
+        {
+            "title": "Canada vote share",
+            "docData": "https://interactive.guim.co.uk/docsdata-test/1GNE_kTJ4T46Zd80ZkS_1lDrJTRm9U6HDaNT0eEzrmWo.json",
+            "path": "2019/10/vote-share-canada"        
+        },
         {
             "title": "Switzerland vote share",
             "docData": "https://interactive.guim.co.uk/docsdata-test/1HlEiTONjuU5nVzCYV_UszSCfHGlbzSSaMNkTsy35mCE.json",
