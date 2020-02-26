@@ -101,7 +101,7 @@ export default function make (context) {
     
         var currentyear = svg.append("g");
         currentyear.append("text")
-        .text("2019")
+        .text("2020")
         .attr("class","gv-current-year")
         .attr("x", 152)
         .attr("y", 18)
@@ -110,7 +110,7 @@ export default function make (context) {
     
         var previousyear = svg.append("g");
         previousyear.append("text")
-        .text("2015")
+        .text("2016")
         .attr("class","gv-previous-year")
         .attr("x", 152)
         .attr("y", 38)
