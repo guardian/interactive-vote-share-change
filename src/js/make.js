@@ -3,17 +3,11 @@ import * as d3selection from 'd3-selection'
 import config from './../../config.json'
 import nodefetch from 'node-fetch'
 
-console.log('making')
 const fetch = nodefetch;
-console.log('')
 
 const d3 = Object.assign({}, d3fetch, d3selection);
 
 const dataurl = config.docData;
-
-
-console.log("vote share running boojum")
-
 
 export default function make (context) {
 
@@ -36,8 +30,13 @@ export default function make (context) {
         var chart = d3.select(".gv-chart-graphic")
     
         var results = data.sheets.results;
+        var furniture =  data.sheets.furniture;
+        var thisyearvalue = (furniture.find(f => f.element == "thisyear")).text;
+        var previousyearvalue = (furniture.find(f => f.element == "previousyear")).text;
+
+
+        console.log(furniture)
     
-        console.log(results)
     
         var svg = chart.append("svg")
         .attr("width", containerWidth)
@@ -96,12 +95,12 @@ export default function make (context) {
         .enter()
         .append("text")
         .attr("y", (d,i) => {return (i * 45) + 35})
-        .text(d => `${d.share}% (${d.share > d.previous ? "+": ""}${(d.share - d.previous).toFixed(1)})`)
+        .text(d => `${d.share} (${d.share > d.previous ? "+": ""}${(d.share - d.previous).toFixed(0)})`)
         .attr("class","gv-party-result")
     
         var currentyear = svg.append("g");
         currentyear.append("text")
-        .text("2020")
+        .text(thisyearvalue)
         .attr("class","gv-current-year")
         .attr("x", 152)
         .attr("y", 18)
@@ -110,7 +109,7 @@ export default function make (context) {
     
         var previousyear = svg.append("g");
         previousyear.append("text")
-        .text("2016")
+        .text(previousyearvalue)
         .attr("class","gv-previous-year")
         .attr("x", 152)
         .attr("y", 38)
